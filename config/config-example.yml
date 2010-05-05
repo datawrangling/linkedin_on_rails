@@ -1,0 +1,11 @@
+development:
+  api_key: "key123"
+  secret_key: "secret123"
+
+test:
+  api_key: "key123"
+  secret_key: "secret123"
+
+production:
+  api_key: "key123"
+  secret_key: "secret123"

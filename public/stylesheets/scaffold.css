@@ -1,0 +1,84 @@
+#container {
+  width: 75%;
+  margin: 0 auto;
+  background-color: #FFF;
+  padding: 20px 40px;
+  border: solid 1px black;
+  margin-top: 20px;
+}
+
+* { margin: 0; padding: 0; }
+body { font: 12px Helvetica, Sans-Serif; line-height: 18px; background: url(../images/noise.jpg); }
+.clear { clear: both; }
+#page-wrap { width: 800px; margin: 40px auto 60px; }
+#pic { float: right; margin: 0px 0 -30px 0; }
+h1 { margin: 0 0 16px 0; padding: 0 0 16px 0; font-size: 42px; font-weight: bold; letter-spacing: -2px; border-bottom: 1px solid #999; }
+h2 { font-size: 20px; margin: 0 0 6px 0; position: relative; }
+h2 span { position: absolute; bottom: 0; right: 0; font-style: italic; font-family: Georgia, Serif; font-size: 16px; color: #999; font-weight: normal; }
+p { margin: 0 0 16px 0; }
+a { color: #999; text-decoration: none; border-bottom: 1px ; }
+a:hover { border-bottom-style: solid; color: black; }
+ul { margin: 0 0 32px 17px; }
+/*#summary { width: 600px; float: left; }*/
+#summary p { font-family: Georgia, Serif; font-style: italic; color: #666; }
+
+#leftcolumn { width: 500px; float: left}
+#rightcolumn { width: 280px; border: 1px solid black; float: right; }
+
+#mainleftcolumn { width: 400px; float: left}
+#mainrightcolumn { width: 300px; float: right; }
+
+#links {  margin: 15px 0px 0px 30px;}
+dt { font-style: italic; font-weight: bold; font-size: 18px; text-align: right; padding: 0 26px 0 0; width: 150px; float: left; height: 100px; border-right: 1px solid #999;  }
+dd { width: 600px; float: right; }
+dd.clear { float: none; margin: 0; height: 15px; }
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+.linkedin {
+  background: url(/images/log-in-linkedin-large.png) no-repeat top left;
+  border: none;
+  width: 197px;
+  height: 31px;
+  text-indent: -3000px;
+}
+
+#user_nav {
+  float: right;
+  font-size: 12px;
+}
+

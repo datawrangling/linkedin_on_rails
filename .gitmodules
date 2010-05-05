@@ -1,0 +1,3 @@
+[submodule "vendor/plugins/authlogic_oauth"]
+	path = vendor/plugins/authlogic_oauth
+	url = git@github.com:jrallison/authlogic_oauth.git

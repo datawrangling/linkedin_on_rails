@@ -1,0 +1,46 @@
+h1. LinkedIn on Rails
+
+This is a simple Ruby on Rails application built to demonstrate how you can use the "LinkedIn OAuth API":http://developer.linkedin.com/community/apis to authenticate users and pull their profile data into your own website or mashup. Users can log in using LinkedIn OAuth and automatically create an enhanced resume generated using their own data and explore their connections.
+
+h3. Get familiar with accessing LinkedIn data within your apps
+
+* Login to a Rails application using LinkedIn OAuth credentials
+* Pull the logged in member's profile data including name, headline, location, summary, specialties, interests, past positions, education, awards, etc.
+* Pull the members connection data: names, profile pictures, headlines, locations, industries
+
+h3. Next steps
+
+* Process member status updates from LinkedIn
+* Process network updates from the network of authenticated members
+* Send messages to other LinkedIn members, and send invitations to connect
+* Update member profiles using OAuth requests after initial login
+* Combine your data with other external datasources
+
+This demo app was built over a few days using the LinkedIn API and several great ruby gems:  
+
+* "Authlogic":http://railscasts.com/episodes/160-authlogic and the "Authlogic OAuth Extension":http://github.com/jrallison/authlogic_oauth
+* Much of the code was based on the great sample Twitter application by "John Allison":http://github.com/jrallison http://github.com/jrallison/authlogic_example/tree/with-oauth
+* "will_paginate":http://wiki.github.com/mislav/will_paginate/ajax-pagination with AJAX goodness
+* CSS based on this great "C'thulhu example":http://css-tricks.com/one-page-resume-site/
+
+h3. Running the application
+
+* Get Developer API keys from LinkedIn, be sure to set your callback url when registering your sample application "http://developer.linkedin.com/community/apis":http://developer.linkedin.com/community/apis
+* Clone or download this sample application from GitHub
+* Install the need gems with "$ rake gems:install"
+* Create the file config/config.yml based on the example provided and substitute your API key and secret in the development section
+* $ rake db:create
+* $ rake db:migrate
+* $ script/server
+* Login at http://localhost:3000
+
+!http://datawrangling.s3.amazonaws.com/Login_OAuth.png!
+
+* Enter your LinkedIn credentials on LinkedIn.com
+
+!http://datawrangling.s3.amazonaws.com/OAuth_Approval.png!
+
+* The application will pull the data from the logged in account via the API and generate a browseable resume   
+
+!http://datawrangling.s3.amazonaws.com/Resume_LinkedIn_Data.png!
+

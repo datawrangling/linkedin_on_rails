@@ -1,0 +1,109 @@
+= Authlogic OAuth Example App
+
+This is an example of how to use Authlogic to enable OAuth authentication in a rails app.
+
+<b>Please note that there are multiple branches for this example app that show how to do different things in Authlogic.</b>
+
+* This application live: http://authlogic-oauth.heroku.com
+* Authlogic OAuth: http://github.com/jrallison/authlogic_oauth
+* Authlogic: http://github.com/binarylogic/authlogic
+
+== What does this example app contain?
+
+1. User registration with Twitter credentials using OAuth.
+1. User login with Twitter credentials using OAuth.
+
+== Tutorial on how to create this app and easily setup Authlogic OAuth
+
+=== 1. Setup and use Authlogic
+
+* Authlogic Example: http://github.com/binarylogic/authlogic_example
+
+=== 2. Install OAuth and Authlogic_Oauth
+
+  $ sudo gem install oauth
+  $ sudo gem install authlogic-oauth
+
+Now add the gem dependencies in your config:
+
+  config.gem "oauth"
+  config.gem "authlogic-oauth", :lib => "authlogic_oauth"
+  
+Or for older version of rails, install it as a plugin:
+
+  $ script/plugin install git://github.com/jrallison/authlogic_oauth.git
+
+=== 3. Make some simple changes to your database:
+
+  class AddUsersOauthFields < ActiveRecord::Migration
+    def self.up
+      add_column :users, :oauth_token, :string
+      add_column :users, :oauth_secret, :string
+      add_index :users, :oauth_token
+
+      change_column :users, :login, :string, :default => nil, :null => true
+      change_column :users, :crypted_password, :string, :default => nil, :null => true
+      change_column :users, :password_salt, :string, :default => nil, :null => true
+    end
+
+    def self.down
+      remove_column :users, :oauth_token
+      remove_column :users, :oauth_secret
+
+      [:login, :crypted_password, :password_salt].each do |field|
+        User.all(:conditions => "#{field} is NULL").each { |user| user.update_attribute(field, "") if user.send(field).nil? }
+        change_column :users, field, :string, :default => "", :null => false
+      end
+    end
+  end
+  
+=== 4. Make sure you save your objects properly
+
+You only need to save your objects this way if you want the user to authenticate with their OAuth provider.
+
+That being said, you probably want to do this in your controllers. You should do this for BOTH your User objects and UserSession objects (assuming you are authenticating users). It should look something like this:
+
+  @user_session.save do |result|
+    if result
+      flash[:notice] = "Login successful!"
+      redirect_back_or_default account_url
+    else
+      render :action => :new
+    end
+  end
+
+You should save your @user objects this way as well, because you also want the user to authenticate with OAuth.
+
+Notice we are saving with a block. Why? Because we need to redirect the user to their OAuth provider so that they can authenticate. When we do this, we don't want to execute that block of code, because if we do, we will get a DoubleRender error. This lets us skip that entire block and send the user along their way without any problems.
+
+=== 5. Define the oauth_consumer class method on your UserSession model
+
+The oauth_consumer should return an OAuth::Consumer which is configured for your OAuth provider.  Here's an example for Twitter:
+
+  class UserSession < Authlogic::Session::Base
+
+    def self.oauth_consumer
+      OAuth::Consumer.new("TOKEN", "SECRET",
+      { :site=>"http://twitter.com",
+        :authorize_url => "http://twitter.com/oauth/authenticate" })
+    end
+
+  end
+  
+=== 6. Add login and register buttons to your views
+
+  <%= oauth_register_button :value => "Register with Twitter" %>
+  <%= oauth_login_button :value => "Login with Twitter" %>
+
+=== 7. Next Steps
+
+Here are some next steps for the plugin.
+
+1. Safe OAuth error handling.
+2. Remove oauth request from the Rails request cycle.
+
+== Improving this tutorial
+
+If you find something confusing or encounter a problem with this tutorial please fork this project, make the changes, and send me a pull request. I would really appreciate this and so would successive Authlogic users.
+
+Copyright (c) 2009 John Allison, released under the MIT license

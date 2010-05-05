@@ -1,0 +1,16 @@
+<div id="results">
+	<dd class="clear"></dd>
+	<% if @connections %>  
+		<dt><%= @user.connections.count %> Connections</dt>
+		<dd>
+		<h3><%= will_paginate @connections %> </h3>	
+		<% @connections.each do |c| %>  
+		 	<% domid = "connection_#{c.id}" %>
+			<%= image_tag(c.picture, {:id => domid}) %>
+			<%= draggable_element(domid, :revert => false) %>
+		<% end %>
+		</dd>
+		<dd class="clear"></dd>
+	<% end %>
+</div>
+

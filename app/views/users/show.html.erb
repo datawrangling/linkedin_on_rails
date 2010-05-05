@@ -1,0 +1,92 @@
+<div id="page-wrap">
+	<% content_for :title,  @user.first_name + ' ' + @user.last_name + "'s Profile"%>
+	<div id="contact-info" class="vcard">
+		<%= image_tag @user.picture, :id => "pic", :size => "110x110", :alt => @user.member_id %>
+	    <!-- Microformats! -->
+	      <h1 class="fn"><%= link_to @user.first_name + ' ' + @user.last_name , @user.logged_in_url, :target => "_blank" %></h1>
+			<h2><%=h @user.headline %></h2>			
+	        <p>
+	            <b><%=h @user.location %> | <%=h @user.industry %></b><br />
+	            Public Profile: <%= link_to @user.public_profile_url, @user.public_profile_url, :target => "_blank" %> 
+	        </p>		
+	</div> 
+	<div id="summary">
+		<div id="leftcolumn">
+	      <p>
+			<%=h @user.summary %>
+	      </p>	
+	    </div>
+		<div id="rightcolumn">
+			<% if @user.member_urls %>
+				<div id="links">
+				<b>Websites:</b>
+				<ul >
+			     <% @user.member_urls.each do |urls| %>
+			      <li><%= link_to urls["name"], urls["url"], :target => "_blank" %> </li>
+			     <% end %>
+			    </ul>
+				</div>
+			<% end %>
+		</div>
+				<div class="clear"></div>
+	</div>
+
+<!-- TODO: Add unless nil to gracefully not display missing sections -->
+	<div class="clear"></div>
+	<dl>
+		
+	    <dd class="clear"></dd>    
+	    <dt>Skills</dt>
+	    <dd>
+			<h3>Specialties</h3>
+	        <p><%=h @user.specialties %></p>
+			<h3>Interests</h3>
+	        <p><%=h @user.interests %></p>
+	    </dd>						
+				
+				
+		<%= render :partial => 'search_results' %>		
+				
+				
+	    <dd class="clear"></dd>
+	    <dt>Education</dt>
+	    <dd>
+		<% @user.educations.each do |e| %>  	
+			<% if e.end_date && e.start_date %>
+	        	<h2><%=h e.school_name %> <span>(<%=h e.start_date.strftime('%Y') %> - <%=h e.end_date.strftime('%Y') %>)</span></h2>
+			<% elsif e.start_date %>
+	        	<h2><%=h e.school_name %> <span>(<%=h e.start_date.strftime('%Y') %> - Present)</span></h2>			
+			<% else %>
+	        	<h2><%=h e.school_name %></h2>				
+			<% end %>
+	
+	        <p><strong><%=h e.degree %></strong> <%=h e.field_of_study %><br />
+			   <% if e.notes %>
+	           	<%= e.notes.gsub(/\r|\n/,'<BR>') %></p>
+			   <% end %>
+		<% end %> 
+	    </dd>
+
+	    <dd class="clear"></dd>
+	    <dt>Experience</dt>
+	    <dd>
+		<% @user.positions.each do |p| %> 
+			<% if p.end_date %>
+	        <h2><%=h p.company %> <span><b><%=h p.title %></b> (<%=h p.start_date.strftime('%B %Y') %> - <%=h p.end_date.strftime('%B %Y') %>)</span></h2>
+			<% else %>
+	        <h2><%=h p.company %> <span><b><%=h p.title %></b> (<%=h p.start_date.strftime('%B %Y') %> - Present)</span></h2>				
+			<% end %>
+	        <ul>
+				<% if p.summary %>
+				  <li>
+	              <%= p.summary.gsub(/\n\n/,'</li><li>').gsub(/\n/,'</li><li>') %>
+				  </li>
+				<% end %>
+	        </ul>
+		<% end %> 
+	    </dd>
+
+	</dl>
+
+	<div class="clear"></div>
+</div>
