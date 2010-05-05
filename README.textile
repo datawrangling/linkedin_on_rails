@@ -2,6 +2,12 @@ h1. LinkedIn on Rails
 
 This is a simple Ruby on Rails application built to demonstrate how you can use the "LinkedIn OAuth API":http://developer.linkedin.com/community/apis to authenticate users and pull their profile data into your own website or mashup. Users can log in using LinkedIn OAuth and automatically create an enhanced resume generated using their own data and explore their connections.
 
+You can try a live demo at "http://linkedin-on-rails.heroku.com/":http://linkedin-on-rails.heroku.com/
+
+Questions? File an issue, check the LinkedIn Developer group, or contact me on Twitter: "@peteskomoroch":http://twitter.com/peteskomoroch
+
+All application code is released under the BSD license, feel free to adapt it for commercial and non-commercial purposes.
+
 h3. Get familiar with accessing LinkedIn data within your apps
 
 * Login to a Rails application using LinkedIn OAuth credentials
