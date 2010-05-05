@@ -2,5 +2,5 @@ authlogic
 oauth
 json
 will_paginate
-jnunemaker-crack
+jnunemaker-crack --source gems.github.com
 
