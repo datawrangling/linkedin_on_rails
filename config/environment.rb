@@ -29,6 +29,7 @@ Rails::Initializer.run do |config|
   config.gem "oauth"
   config.gem "json"
   config.gem "will_paginate"
+  config.gem "jnunemaker-crack", :source => "http://gems.github.com"
 
   # Only load the plugins named here, in the order given. By default, all plugins 
   # in vendor/plugins are loaded in alphabetical order.
