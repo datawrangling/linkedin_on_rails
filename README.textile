@@ -34,6 +34,17 @@ h3. Running the application
 * Get Developer API keys from LinkedIn, be sure to set your callback url when registering your sample application "http://developer.linkedin.com/community/apis":http://developer.linkedin.com/community/apis
 * Clone or download this sample application from GitHub
 * Either create environment variables for "LINKEDIN_API_KEY" and "LINKEDIN_SECRET_KEY" or create the YAML file config/config.yml based on the example provided and substitute your API key and secret in the development section
+
+<pre>
+   # for heroku
+   $ cd linkedin_on_rails
+   $ heroku config:add LINKEDIN_API_KEY=12345 LINKEDIN_SECRET_KEY=ABC123
+
+   # for local development, just add them to your .bashrc or profile
+   export LINKEDIN_API_KEY=12345   
+   export LINKEDIN_SECRET_KEY=ABC123	
+</pre>	
+
 * $ rake gems:install
 * $ rake db:create
 * $ rake db:migrate

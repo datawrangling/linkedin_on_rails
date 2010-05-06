@@ -29,6 +29,7 @@ Rails::Initializer.run do |config|
   config.gem "oauth"
   config.gem "json"
   config.gem "will_paginate"
+  config.gem 'hoptoad_notifier'
   # TODO: switch to alternate XML parser
   config.gem "crack" #, :source => "http://gems.github.com"
   #config.gem "jnunemaker-crack", :source => "http://gems.github.com"
