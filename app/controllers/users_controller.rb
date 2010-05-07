@@ -6,6 +6,11 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def show_tooltip
+    @user = User.find(params[:user_id])
+    @connection = @user.connections.find_by_id(params[:id])
+  end
+
   def create
     @user = User.new(params[:user])
     @user.save do |result|

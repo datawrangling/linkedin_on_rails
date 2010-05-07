@@ -87,7 +87,7 @@ class User < ActiveRecord::Base
     connection_params[:last_name] = person['last_name']
     connection_params[:headline] = person['headline']
     connection_params[:location] = person['location']['name']
-    connection_params[:location] = person['location']['country']['code']  
+    connection_params[:country] = person['location']['country']['code']  
     connection_params[:industry] = person['industry']                      
     connection_params[:picture_url] = person['picture_url']
     return connection_params

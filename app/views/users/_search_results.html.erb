@@ -1,16 +1,27 @@
 <div id="results">
 	<dd class="clear"></dd>
 	<% if @connections %>  
-		<dt><%= @user.connections.count %> Connections</dt>
+			<dt>
+		<%= @user.connections.count %> Connections
+			<BR>
+			<BR>	
+				<div id="tooltip_box">
+				  <div id="tooltip_header"></div>
+				  <div id="tooltip_body"></div>
+				</div>
+			</dt>
 		<dd>
 		<h3><%= will_paginate @connections %> </h3>	
 		<% @connections.each do |c| %>  
 		 	<% domid = "connection_#{c.id}" %>
-			<%= image_tag(c.picture, {:id => domid}) %>
+			
+			<%= link_to(image_tag(c.picture, {:id => domid, :onmouseover => remote_function(
+			  :url => { :controller => :users, :action => :show_tooltip, :id => c.id, :user_id => @user.id})}), c.logged_in_url) %>
 			<%= draggable_element(domid, :revert => false) %>
 		<% end %>
 		</dd>
 		<dd class="clear"></dd>
 	<% end %>
 </div>
+
 

@@ -1,7 +1,7 @@
 <div id="page-wrap">
 	<% content_for :title,  @user.first_name + ' ' + @user.last_name + "'s Profile"%>
 	<div id="contact-info" class="vcard">
-		<%= image_tag @user.picture, :id => "pic", :size => "110x110", :alt => @user.member_id %>
+		<%= image_tag @user.picture, :id => "pic", :size => "110x110", :alt => @user.member_id.to_s, :title => @user.member_id.to_s %>
 	    <!-- Microformats! -->
 	      <h1 class="fn"><%= link_to @user.first_name + ' ' + @user.last_name , @user.logged_in_url, :target => "_blank" %></h1>
 			<h2><%=h @user.headline %></h2>			
@@ -89,6 +89,7 @@
 	    </dd>
 
 	</dl>
-
 	<div class="clear"></div>
+
 </div>
+			<%= @user.member_id.to_s %>
