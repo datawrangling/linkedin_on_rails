@@ -27,6 +27,7 @@ Rails::Initializer.run do |config|
   # config.gem "aws-s3", :lib => "aws/s3"
   config.gem "authlogic"
   config.gem "oauth"
+  config.gem "authlogic-oauth", :lib => "authlogic_oauth"
   config.gem "json"
   config.gem "will_paginate"
   # config.gem 'hoptoad_notifier'
