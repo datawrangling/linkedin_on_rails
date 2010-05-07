@@ -17,16 +17,18 @@
 	      </p>	
 	    </div>
 		<div id="rightcolumn">
-			<% if @user.member_urls.size > 0 %>
-				<div id="links">
-				<b>Websites:</b>
-				 <ul >
-			     <% @user.member_urls.each do |urls| %>
-			      <li><%= link_to urls["name"], urls["url"], :target => "_blank" %> </li>
-			     <% end %>
-				</ul>
-				</div>
-			<% end %>
+			<% if @user.member_urls %>
+				<% if @user.member_urls.size > 0 %>
+					<div id="links">
+					<b>Websites:</b>
+					 <ul >
+				     <% @user.member_urls.each do |urls| %>
+				      <li><%= link_to urls["name"], urls["url"], :target => "_blank" %> </li>
+				     <% end %>
+					</ul>
+					</div>
+				<% end %>
+			<% end %>	
 		</div>
 				<div class="clear"></div>
 	</div>
