@@ -20,7 +20,7 @@
 			<div id="rightcolumn">
 				<div id="links">
 				<b>Websites:</b>
-				 <ul >
+				 <ul>
 			     <% @user.member_urls.each do |urls| %>
 			      <li><%= link_to urls["name"], urls["url"], :target => "_blank" %> </li>
 			     <% end %>
@@ -72,9 +72,9 @@
 	    <dd>
 		<% @user.positions.each do |p| %> 
 			<% if p.end_date && p.start_date %>
-	        	<h2><%=h p.company %> <span><b><%=h p.title %></b> (<%=h p.start_date.strftime('%B %Y') %> - <%=h p.end_date.strftime('%B %Y') %>)</span></h2>
+	        	<h2><%=h p.company %> <span><b><%=h p.title %></b> (<%=h p.start_date.strftime('%m/%Y') %> - <%=h p.end_date.strftime('%m/%Y') %>)</span></h2>
 			<% elsif p.start_date %>
-	        	<h2><%=h p.company %> <span><b><%=h p.title %></b> (<%=h p.start_date.strftime('%B %Y') %> - Present)</span></h2>
+	        	<h2><%=h p.company %> <span><b><%=h p.title %></b> (<%=h p.start_date.strftime('%m/%Y') %> - Present)</span></h2>
 			<% else  %>
 	        	<h2><%=h p.company %> <span><b><%=h p.title %></b></span></h2>			
 			<% end %>
