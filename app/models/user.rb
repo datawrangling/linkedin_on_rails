@@ -21,8 +21,12 @@ class User < ActiveRecord::Base
   end  
   
   def member_urls
-    @foo = JSON.parse(self.member_url_resources)
-    @foo['member_url']
+    urls = nil
+    if self.member_url_resources != 'null'
+      @foo = JSON.parse(self.member_url_resources)
+      urls = @foo['member_url']
+    end
+    return urls  
   end  
   
   def extract_date(date_xml)
