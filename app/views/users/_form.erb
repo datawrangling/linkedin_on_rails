@@ -1,9 +1,9 @@
 <% form_for @user do |f| %>
   <%= f.error_messages %>
-  <!-- <p>
+  <p>
     <%= f.label :email %><br />
     <%= f.text_field :email %>
-  </p> -->
+  </p>
   <p><%= oauth_register_button :value => "Register with LinkedIn", :class => 'linkedin' %></p>
 <% end %>
 
