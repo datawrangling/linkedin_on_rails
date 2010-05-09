@@ -80,7 +80,7 @@ dd.clear { float: none; margin: 0; height: 15px; }
 }
 
 .linkedin {
-  background: url(/images/log-in-linkedin-large.png) no-repeat top left;
+  background: url(../images/log-in-linkedin-large.png) no-repeat top left;
   border: none;
   width: 197px;
   height: 31px;
