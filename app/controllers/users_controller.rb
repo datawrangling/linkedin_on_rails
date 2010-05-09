@@ -42,9 +42,9 @@ class UsersController < ApplicationController
       format.html
       format.js {
         render :update do |page|
-          # 'page.replace' will replace full "results" block...works for this example
-          # 'page.replace_html' will replace "results" inner html...useful elsewhere
-          page.replace 'results', :partial => 'search_results'
+          # 'page.replace' will replace full "connection_results" block...works for this example
+          # 'page.replace_html' will replace "connection_results" inner html...useful elsewhere
+          page.replace 'connection_results', :partial => 'connections'
         end
       }
     end
