@@ -36,7 +36,7 @@ class UsersController < ApplicationController
 
   def show
     @user = @current_user
-    @connections = @user.connections.paginate :page => params[:page], :per_page => 21, :order => 'member_id'
+    @connections = @user.connections.paginate :page => params[:page], :per_page => 21, :order => 'picture_url desc, member_id asc'
     
     respond_to do |format|
       format.html

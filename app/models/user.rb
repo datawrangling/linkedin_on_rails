@@ -20,12 +20,25 @@ class User < ActiveRecord::Base
     end  
   end  
   
+  def twitter_urls
+    # '{\"twitter_account\":{\"provider_account_name\":[\"peteskomoroch\"],\"provider_account_id\":\"14344469\"},\"total\":\"1\"}'
+    urls = nil
+    if self.twitter_accounts != 'null'
+      @foo = JSON.parse(self.twitter_accounts)
+      urls = @foo['twitter_account']
+    end
+    puts urls
+    return urls  
+  end  
+  
+  
   def member_urls
     urls = nil
     if self.member_url_resources != 'null'
       @foo = JSON.parse(self.member_url_resources)
       urls = @foo['member_url']
     end
+    puts urls
     return urls  
   end  
   
@@ -104,6 +117,22 @@ class User < ActiveRecord::Base
     return member_url_resources.to_json
   end  
   
+  def extract_twitter_ids(twitter_accounts)
+    #twitter_account:
+    # provider_account_name: peteskomoroch
+    # provider_account_id: 14344469
+    # total: 1
+    twitter_account_resources = nil
+    if twitter_accounts['total'].to_i > 1    
+      twitter_account_resources = twitter_accounts
+    elsif twitter_accounts['total'].to_i == 1
+      twitter_account_resources = twitter_accounts
+      twitter_account_resources["twitter_account"] = [twitter_account_resources["twitter_account"]]
+    end
+    return twitter_account_resources.to_json
+  end  
+  
+  
 private
 
   def populate_oauth_user
@@ -111,7 +140,7 @@ private
       # 1) Fetch profile info (name, headline, industry, profile pic, public url, summary, specialties, web urls)
       # @response = UserSession.oauth_consumer.request(:get, 'http://api.linkedin.com/v1/people/~',
       @response = UserSession.oauth_consumer.request(:get, 
-      'http://api.linkedin.com/v1/people/~:(id,first-name,last-name,headline,industry,summary,specialties,interests,picture-url,public-profile-url,site-standard-profile-request,location,member-url-resources,honors,associations)',
+      'http://api.linkedin.com/v1/people/~:(id,first-name,last-name,headline,industry,summary,specialties,interests,picture-url,public-profile-url,site-standard-profile-request,location,twitter-accounts,member-url-resources,honors,associations)',
       access_token, { :scheme => :query_string })
       case @response
       when Net::HTTPSuccess
@@ -132,7 +161,8 @@ private
         self.location = user_info['location']['name'] 
         self.country = user_info['location']['country']['code']
         self.honors = user_info['honors']
-        self.associations = user_info['associations']            
+        self.associations = user_info['associations']
+        self.twitter_accounts = extract_twitter_ids(user_info['twitter_accounts'])           
         self.member_url_resources = extract_member_urls(user_info['member_url_resources'])                 
       end
       

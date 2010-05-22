@@ -8,6 +8,11 @@
 	        <p>
 	            <b><%=h @user.location %> | <%=h @user.industry %></b><br />
 	            Public Profile: <%= link_to @user.public_profile_url, @user.public_profile_url, :target => "_blank" %> 
+				<% if @user.twitter_urls != nil %>	
+					<% @user.twitter_urls.each do |urls| %>
+			      	 <br />Twitter Account: <%=  link_to "@"+urls["provider_account_name"], "http://twitter.com/" + urls["provider_account_name"], :target => "_blank" %>
+			     	<% end %>
+				<% end %>
 	        </p>		
 	</div> 
 	<div id="summary">
@@ -16,15 +21,15 @@
 			<%=h @user.summary %>
 	      </p>	
 	    </div>
-		<% if @user.member_urls != nil %>
+		 <% if @user.member_urls != nil %>
 			<div id="rightcolumn">
-				<div id="links">
-				<b>Websites:</b>
-				 <ul>
-			     <% @user.member_urls.each do |urls| %>
-			      <li><%= link_to urls["name"], urls["url"], :target => "_blank" %> </li>
-			     <% end %>
-				</ul>
+				<div id="links">					
+					<b>Websites:</b>
+					 <ul>
+				     	<% @user.member_urls.each do |urls| %>
+				      		<li><%= link_to urls["name"], urls["url"], :target => "_blank" %> </li>
+				     	<% end %>					
+					</ul>
 				</div>	
 			</div>
 		<% end %>	
