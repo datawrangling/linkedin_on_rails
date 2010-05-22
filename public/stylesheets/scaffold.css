@@ -32,7 +32,7 @@ ul { margin: 0 0 32px 17px; }
 #rightcolumn { width: 280px; border: 1px solid black; float: right; }
 
 #mainleftcolumn { width: 380px; float: left}
-#mainrightcolumn { width: 400px; float: right; }
+#mainrightcolumn { width: 400px; float: left }
 
 #tooltip_box {font: 14px Helvetica, Sans-Serif; line-height: 18px; text-align: left;}
 #tooltip_body {font: 12px Helvetica, Sans-Serif; font-style:italic; line-height: 16px; text-align: left; }
