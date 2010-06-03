@@ -27,7 +27,6 @@ class User < ActiveRecord::Base
       @foo = JSON.parse(self.twitter_accounts)
       urls = @foo['twitter_account']
     end
-    puts urls
     return urls  
   end  
   
@@ -38,7 +37,6 @@ class User < ActiveRecord::Base
       @foo = JSON.parse(self.member_url_resources)
       urls = @foo['member_url']
     end
-    puts urls
     return urls  
   end  
   
@@ -132,7 +130,7 @@ class User < ActiveRecord::Base
     return twitter_account_resources.to_json
   end  
   
-  
+    
 private
 
   def populate_oauth_user
@@ -164,8 +162,7 @@ private
         self.associations = user_info['associations']
         self.twitter_accounts = extract_twitter_ids(user_info['twitter_accounts'])           
         self.member_url_resources = extract_member_urls(user_info['member_url_resources'])                 
-      end
-      
+      end      
     end  
   end  
       
@@ -208,7 +205,6 @@ private
             self.connections.create(connection_params)
           end
         else
-          puts user_info['connections'].inspect
           connection_params = extract_connection(user_info['connections']['person'])
           self.connections.create(connection_params)
         end        
